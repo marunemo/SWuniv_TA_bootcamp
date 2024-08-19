@@ -3,14 +3,17 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        String number;
+        String number, change = "";
         Scanner sc = new Scanner(System.in);
 
         number = sc.nextLine();
-        for(int i = 0; i < number.length(); i++) {
-            System.out.print(number.charAt(i));
+        for(int i = number.length() - 1; i >= 0; i--) {
+            if(number.charAt(i) >= '0' && number.charAt(i) <= '9')
+                change += number.charAt(i);
             if(i % 3 == 0)
-                System.out.print(",");
+                change += ',';
         }
+
+        System.out.println(change);
     }
 }

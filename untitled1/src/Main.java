@@ -5,15 +5,33 @@ public class Main {
     public static void main(String[] args) {
         String number, change = "";
         Scanner sc = new Scanner(System.in);
+        int error = 0;
+        int start;
 
-        number = sc.nextLine();
-        for(int i = number.length() - 1; i >= 0; i--) {
-            if(number.charAt(i) >= '0' && number.charAt(i) <= '9')
-                change += number.charAt(i);
-            if(i % 3 == 0)
-                change += ',';
+        while(error < 3) {
+            number = sc.nextLine();
+
+            start = number.length() - 1;
+            if(number.charAt(0) == '-') {
+                change = "-";
+                start -= 1;
+            }
+
+            for(int i = start; i >= 0; i--) {
+                if(number.charAt(i) >= '0' && number.charAt(i) <= '9')
+                    change += number.charAt(i);
+                else {
+                    error++;
+                    if(error == 3)
+                        System.out.println("Error occured.");
+                }
+
+                if(i % 3 == 0)
+                    change += ',';
+            }
+
+            System.out.println(change);
         }
 
-        System.out.println(change);
     }
 }

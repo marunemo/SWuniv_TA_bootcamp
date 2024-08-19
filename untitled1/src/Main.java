@@ -53,32 +53,47 @@ public class Main {
 //
 //        System.out.println("Terminated.");
 //    }
-
     public static void main(String[] args) {
-        HashMap<Integer, Boolean> map = new HashMap<>();
-        int[] list = {3,2,4,8,29,7,4,9,3,2,5};
-        int[] list2 = {3,8,9,47,29,5,8,7,3,2,4,9,8,5,2,3,57,3};
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int[] list = {1, 2, 3, 4};
+        int[] list2 = {1, 2, 5, 6};
 
-        int[] change = new int[50];
-        int changeIndex = 0;
+        int[] intersect = new int[50];
+        int intersectIndex = 0;
+        int[] union = new int[50];
+        int unionIndex = 0;
 
         for(int i = 0; i < list.length; i++) {
             if(!map.containsKey(list[i])) {
-                map.put(list[i], true);
-                change[changeIndex++] = list[i];
+                map.put(list[i], 1);
+                union[unionIndex++] = list[i];
+            }
+            else if(map.get(list[i]) == 1) {
+                map.put(list[i], 2);
+                intersect[intersectIndex++] = list[i];
             }
         }
 
         for(int i = 0; i < list2.length; i++) {
             if(!map.containsKey(list2[i])) {
-                map.put(list2[i], true);
-                change[changeIndex++] = list2[i];
+                map.put(list2[i], 1);
+                union[unionIndex++] = list2[i];
+            }
+            else if(map.get(list2[i]) == 1) {
+                map.put(list2[i], 2);
+                intersect[intersectIndex++] = list2[i];
+
             }
         }
 
-        for(int i = 0; i < changeIndex; i++) {
-            System.out.print(change[i] + " ");
-        }
+        System.out.print("intersect: ");
+        for(int i = 0; i < intersectIndex; i++)
+            System.out.print(intersect[i] + " ");
+        System.out.println();
+
+        System.out.print("union: ");
+        for(int i = 0; i < unionIndex; i++)
+            System.out.print(union[i] + " ");
         System.out.println();
     }
 }
